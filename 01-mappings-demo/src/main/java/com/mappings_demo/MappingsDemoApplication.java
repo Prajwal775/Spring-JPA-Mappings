@@ -18,7 +18,8 @@ public class MappingsDemoApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		appService.saveData();
+		 appService.saveData();
 
+		System.out.println("data for student and address tables have been inserted");
 	}
 }
