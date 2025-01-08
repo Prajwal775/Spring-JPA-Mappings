@@ -15,13 +15,18 @@ public class Student {
     @Column(name="PhoneNumber")
     private int mobileNo;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
 
     public Student(){}
 
 
-    public Student(String name, int mobileNo) {
+    public Student(String name, int mobileNo,Address address) {
         this.name = name;
         this.mobileNo = mobileNo;
+        this.address=address;
     }
 
     public int getStudentId() {
@@ -46,6 +51,14 @@ public class Student {
 
     public void setMobileNo(int mobileNo) {
         this.mobileNo = mobileNo;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     @Override

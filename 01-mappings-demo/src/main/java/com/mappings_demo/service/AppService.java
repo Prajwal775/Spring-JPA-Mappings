@@ -20,11 +20,24 @@ public class AppService {
 
 @Transactional
     public void saveData(){
-        Student piyush=new Student("Piyush",863032044);
-        Address piyushAddress=new Address("bell road","dehradun","uttarakhand");
 
+    Address piyushAddress = new Address("bell road", "dehradun", "uttarakhand");
+    //piyush.setAddress(piyushAddress); // to enter address id in fk when creation
+    //or you can alter the construvtor of student class and mention this in the constructor only eg.
+    // 1st way //    Student piyush=new Student("Piyush",863032044);
+    //2nd way
+    Student piyush = new Student("Piyush", 863032044, piyushAddress);
+    // Remember to save the address first then the student object;
 
-        studentRepository.save(piyush);
-        addressRepository.save(piyushAddress);
-    }
+    addressRepository.save(piyushAddress);
+    studentRepository.save(piyush);
+}
+
+@Transactional
+public void fetchData(){
+    Student studentdata=studentRepository.findById(1).get();
+    System.out.println(studentdata);
+    Address addressdata=studentdata.getAddress();
+    System.out.println(addressdata.getAddressId());
+}
 }
